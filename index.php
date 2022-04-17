@@ -34,11 +34,12 @@
 
 <header class="p-3 bg-dark text-white">
   <div class="container">
-
     <!-- logged in user information -->
     <?php  if (isset($_SESSION['username'])) : ?>
     	<p>Welcome <strong><?php echo $_SESSION['username'] ; ?></strong></p>
-    	<p>Your ID-</p>
+      <p>Your ID-<strong><?php
+        $pass = substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 4);
+        echo 'UC-'.$pass;?></strong></p>
     <?php endif ?>
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <a href="#" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -110,7 +111,7 @@
     <div class="my-3 p-3 bg-body rounded shadow-sm">
       <h3 class="border-bottom pb-2 mb-0">Recent updates</h3>
       <div class="d-flex text-muted pt-3">
-      <img src="aurora.jpeg" height="240" width="380">
+      <img src="aurora-1.jpeg" height="240" width="380">
         <a href="Auora.html" style=" margin-bottom :150px;">
           <p class="pb-3 mb-0 small lh-sm border-bottom" style="padding-left: 10px;">
             <strong class="d-block text-gray-dark" style=" font-size: 45px;">AURORA</strong>
