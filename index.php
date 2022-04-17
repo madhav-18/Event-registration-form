@@ -1,3 +1,16 @@
+<?php 
+  session_start(); 
+
+  if (!isset($_SESSION['username'])) {
+  	$_SESSION['msg'] = "You must log in first";
+  	header('location: login.php');
+  }
+  if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['username']);
+  	header("location: login.php");
+  }
+?>
 <!doctype html>
 <html lang="en">
 
@@ -21,6 +34,12 @@
 
 <header class="p-3 bg-dark text-white">
   <div class="container">
+
+    <!-- logged in user information -->
+    <?php  if (isset($_SESSION['username'])) : ?>
+    	<p>Welcome <strong><?php echo $_SESSION['username'] ; ?></strong></p>
+    	<p>Your ID-</p>
+    <?php endif ?>
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <a href="#" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
         <h2>V-CERF</h2>
@@ -30,8 +49,9 @@
       </div>
 
       <div class="text-end">
-        <a href="Login.html"><button type="button" class="btn btn-outline-light me-2">Login</button></a>
-        <a href="Register.html"><button type="button" class="btn btn-warning">Sign-up</button></a>
+        <a href="Login.php"><button type="button" class="btn btn-outline-light">Login</button></a>
+        <a href="Register.php"><button type="button" class="btn btn-warning">Sign-up</button></a>
+        <a href="index.php?logout='1'" class="btn btn-danger">logout</a>
       </div>
     </div>
   </div>
@@ -48,7 +68,6 @@
             <img src="Blank.png" width="mb-auto" height="225" role="img">
             <title>Create own</title>
             </img>
-
             <div class="card-body">
               <a href="blank_form.html" class="card-text">Blank</a>
               <div class="d-flex justify-content-between align-items-center">
@@ -73,7 +92,7 @@
           <div class="card shadow-sm">
             <img src="cultural.png" width="mb-auto" height="225" role="img">
             <title>Cultural</title>
-            </svg>
+            </img>
 
             <div class="card-body">
               <a href="cultural.html" class="card-text">Cultural Events Theme</a>
@@ -91,10 +110,12 @@
     <div class="my-3 p-3 bg-body rounded shadow-sm">
       <h3 class="border-bottom pb-2 mb-0">Recent updates</h3>
       <div class="d-flex text-muted pt-3">
+      <img src="aurora.jpeg" height="240" width="380">
         <a href="Auora.html" style=" margin-bottom :150px;">
           <p class="pb-3 mb-0 small lh-sm border-bottom" style="padding-left: 10px;">
             <strong class="d-block text-gray-dark" style=" font-size: 45px;">AURORA</strong>
-            Best Sports and Cultural Events in UCOE!
+            Aurora is an intra college event conducted by universal College of engineering 
+            which consist of sports and cultural <br>event. Best Sports and Cultural Events in UCOE!
           </p>
         </a>
       </div>
