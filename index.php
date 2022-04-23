@@ -36,8 +36,8 @@
   <div class="container">
     <!-- logged in user information -->
     <?php  if (isset($_SESSION['username'])) : ?>
-    	<p>Welcome <strong><?php echo $_SESSION['username'] ; ?></strong></p>
-      <p>Your ID-<strong><?php
+    	<p>Welcome <strong style="padding-right:945px"><?php echo $_SESSION['username'] ; ?></strong>
+      Your ID-<strong><?php
         $pass = substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 4);
         echo 'UC-'.$pass;?></strong></p>
     <?php endif ?>
@@ -112,23 +112,21 @@
       <h3 class="border-bottom pb-2 mb-0">Recent updates</h3>
       <div class="d-flex text-muted pt-3">
       <img src="aurora-1.jpeg" height="240" width="380">
-        <a href="Auora.html" style=" margin-bottom :150px;">
+        <a href="sports.html" style=" margin-bottom :150px;">
           <p class="pb-3 mb-0 small lh-sm border-bottom" style="padding-left: 10px;">
-            <strong class="d-block text-gray-dark" style=" font-size: 45px;">AURORA</strong>
+            <strong class="d-block text-gray-dark" style=" font-size: 45px;">AURORA</strong></a>
             Aurora is an intra college event conducted by universal College of engineering 
             which consist of sports and cultural <br>event. Best Sports and Cultural Events in UCOE!
           </p>
-        </a>
       </div>
 
       <div class="d-flex text-muted pt-3">
         <img src="vyro-1.jpg" height="240" width="380">
-        <a href="Vyro.html" style=" margin-bottom :150px;">
+        <a href="cultural.html" style=" margin-bottom :150px;">
           <p class="pb-3 mb-0 small lh-sm border-bottom" style="padding-left: 10px;">
-            <strong class="d-block text-gray-dark" style=" font-size: 45px;">VYRO</strong>
+            <strong class="d-block text-gray-dark" style=" font-size: 45px;">VYRO</strong></a>
             Technical Event
           </p>
-        </a>
       </div>
       <!-- <small class="d-block text-end mt-3">
         <a href="#">All updates</a>
