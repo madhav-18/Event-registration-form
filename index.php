@@ -1,9 +1,14 @@
+
 <?php 
   session_start(); 
 
   if (!isset($_SESSION['username'])) {
   	$_SESSION['msg'] = "You must log in first";
   	header('location: login.php');
+  }
+   if (!isset($_SESSION['user_id'])) {
+  //	$_SESSION['msg'] = "You must log in first";
+  //	header('location: login.php');
   }
   if (isset($_GET['logout'])) {
   	session_destroy();
@@ -36,11 +41,29 @@
   <div class="container">
     <!-- logged in user information -->
     <?php  if (isset($_SESSION['username'])) : ?>
-    	<p>Welcome <strong style="padding-right:945px"><?php echo $_SESSION['username'] ; ?></strong>
-      Your ID-<strong><?php
-        $pass = substr(str_shuffle("0123456789abcdefghijklmnopqrstvwxyz"), 0, 4);
-        echo 'UC-'.$pass;?></strong></p>
-    <?php endif ?>
+    	<p>Welcome <strong style="padding-right:870px"><?php echo $_SESSION['username'] ; ?></strong>
+      <?php endif; ?>
+      <?php 
+          // initializing variables
+              $username = "";
+              $email    = "";
+              $code= array();
+              $errors = array(); 
+
+              // connect to the database
+               $db = mysqli_connect('localhost', 'root', '', 'v-cerf');
+              $username=$_SESSION['username'] ;
+               $query = "SELECT user_id FROM register_user WHERE username='$username'";
+               $results = mysqli_query($db, $query);
+      ?>
+      <?php 
+        while ($row = $results->fetch_assoc()):
+      ?>
+
+      Your ID-<strong>
+      <?php echo $row['user_id'] ; ?>
+    </strong></p>
+    <?php endwhile ?>
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <a href="#" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
         <h2>V-CERF</h2>
