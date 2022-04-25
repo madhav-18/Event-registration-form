@@ -16,7 +16,7 @@ include("connection.php");
 		<form method="post" >
 		<div class="title-div">
 			<h1>SPORT EVENTS</h1>
-			<p>This is a Sports form. This form is created with HTML and CSS.</p>
+			<p>Enter the details required to register your self for the event.</p>
 			<p class="required">*Required</p>
 		</div>
 		
