@@ -17,7 +17,7 @@ include("connection.php");
 		<div class="title-div">
 			<h1>SPORT EVENTS</h1>
 			<p>Enter the details required to register your self for the event.</p>
-			<p class="required">*Required</p>
+			<p class="required">* is Required</p>
 		</div>
 		
 		<div class="name-div">
@@ -54,53 +54,53 @@ include("connection.php");
 		<div class="event-div">
 			<div class="name">Events<span class="required">*</span></div>
 				<div class="group" style="padding-left:10px;">
-					<input type="checkbox" name="Event[]" values="Football">Football<br>
+					<input type="checkbox" name="Events[]" value="Football">Football<br>
 
-					<input type="checkbox" name="Event[]" values="Cricket">Cricker<br>
+					<input type="checkbox" name="Events[]" value="Cricket">Cricker<br>
 
-					<input type="checkbox" name="Event[]" values="Volleyball">Volleyball<br>
+					<input type="checkbox" name="Events[]" value="Volleyball">Volleyball<br>
 
-					<input type="checkbox" name="Event[]" values="MixVolleyball" >Mix-Volleyball<br>
+					<input type="checkbox" name="Events[]" value="MixVolleyball" >Mix-Volleyball<br>
 
-					<input type="checkbox" name="Event[]" values="Kabaddi" >Kabaddi<br>
+					<input type="checkbox" name="Events[]" value="Kabaddi" >Kabaddi<br>
 
-					<input type="checkbox" name="Event[]" values="Badminton" >Badminton<br>
+					<input type="checkbox" name="Events[]" value="Badminton" >Badminton<br>
 
-					<input type="checkbox" name="Event[]" values="Kho-Kho" >Kho-Kho<br>
+					<input type="checkbox" name="Events[]" value="Kho-Kho" >Kho-Kho<br>
 
-					<input type="checkbox" name="Event[]" values="Carrom" >Carrom<br>
+					<input type="checkbox" name="Events[]" value="Carrom" >Carrom<br>
 
-					<input type="checkbox" name="Event[]" values="Chess" >Chess<br>
+					<input type="checkbox" name="Events[]" value="Chess" >Chess<br>
 
-					<input type="checkbox" name="Event[]" values="TugofWar" >Tug of War<br>
+					<input type="checkbox" name="Events[]" value="TugofWar" >Tug of War<br>
 
-					<input type="checkbox" name="Event[]" values="TableTennis" >Table Tennis<br>
+					<input type="checkbox" name="Events[]" value="TableTennis" >Table Tennis<br>
 
-					<input type="checkbox" name="Event[]" values="Sprint100M" >Sprint 100M<br>
+					<input type="checkbox" name="Events[]" value="Sprint100M" >Sprint 100M<br>
 
-					<input type="checkbox" name="Event[]" values="Sprint200M" >Sprint 200M<br>
+					<input type="checkbox" name="Events[]" value="Sprint200M" >Sprint 200M<br>
 
-					<input type="checkbox" name="Event[]" values="Sprint400M" >Sprint 400M<br>
+					<input type="checkbox" name="Events[]" value="Sprint400M" >Sprint 400M<br>
 
-					<input type="checkbox" name="Event[]" values="LongJump" >Long Jump<br>
+					<input type="checkbox" name="Events[]" value="LongJump" >Long Jump<br>
 
-					<input type="checkbox" name="Event[]" values="TripleJump" >Triple Jump<br>
+					<input type="checkbox" name="Events[]" value="TripleJump" >Triple Jump<br>
 
-					<input type="checkbox" name="Event[]" values="Langadi100M"  >Langadi 100M<br>
+					<input type="checkbox" name="Events[]" value="Langadi100M"  >Langadi 100M<br>
 
-					<input type="checkbox" name="Event[]" values="Relay"> Relay<br>
+					<input type="checkbox" name="Events[]" value="Relay"> Relay<br>
 
-					<input type="checkbox" name="Event[]" values="MixRelay" > Mix-Relay<br>
+					<input type="checkbox" name="Events[]" value="MixRelay" > Mix-Relay<br>
 					
-					<input type="checkbox" name="Event[]" values="ShotPut" > ShotPut<br>
+					<input type="checkbox" name="Events[]" value="ShotPut" > ShotPut<br>
 
-					<input type="checkbox" name="Event[]" values="FemBoxCricket" >Box Cricker(Female)<br>
+					<input type="checkbox" name="Events[]" value="FemBoxCricket" >Box Cricker(Female)<br>
 					
-					<input type="checkbox" name="Event[]" values="FemLangadi" >Langadi(Female)<br>
+					<input type="checkbox" name="Events[]" value="FemLangadi" >Langadi(Female)<br>
 
-					<input type="checkbox" name="Event[]" values="FemThrowball" >Throwball(Female)<br>
+					<input type="checkbox" name="Events[]" value="FemThrowball" >Throwball(Female)<br>
 					
-					<input type="checkbox" name="Event[]" values="FemDodgeball" >Dodgeball(Female)<br>
+					<input type="checkbox" name="Events[]" value="FemDodgeball" >Dodgeball(Female)<br>
 					
 				</div>
 		</div>
@@ -129,23 +129,21 @@ if (isset($_POST['Register'])) {
 	$Branch = $_POST['Branch'];
 	$Year = $_POST['Year'];
 	$Mobile = $_POST['Mobile'];
-	$Event = $_POST['Event'];
-	$Events = "";
-	foreach($Event as $row){
-		$Events .= $row . ",";
+	$Events = $_POST['Events'];
+	$Event = "";
+	foreach($Events as $row){
+		$Event .= $row . ",";
 	}
 
-			$query = "INSERT INTO sports_entries (User_id, College, Email, Branch, Year, Event, Mobile) 
-				VALUES('$User_id','$College', '$Email', '$Branch', '$Year', '$item','$Mobile')" ;
+			$query = "INSERT INTO sports_entries (User_id, College, Email, Branch, Year, Events, Mobile) 
+				VALUES('$User_id','$College', '$Email', '$Branch', '$Year', '$Event','$Mobile')" ;
  			$query_run = mysqli_query($conn, $query);
 
 		 if($query_run){
 			 $_SESSION['status']= "Registered successfully";
-			 header ('location : sports.php');
 		 }
 		 else{
 			 $_SESSION['status'] = "Unable to register";
-			 header('location: sports.php');
 		 }
 	
 	// $hostURL = "localhost";
