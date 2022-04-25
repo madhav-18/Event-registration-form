@@ -54,53 +54,53 @@ include("connection.php");
 		<div class="event-div">
 			<div class="name">Events<span class="required">*</span></div>
 				<div class="group" style="padding-left:10px;">
-					<input type="checkbox" name="Event" values="Football">Football<br>
+					<input type="checkbox" name="Event[]" values="Football">Football<br>
 
-					<input type="checkbox" name="Event" values="Cricket">Cricker<br>
+					<input type="checkbox" name="Event[]" values="Cricket">Cricker<br>
 
-					<input type="checkbox" name="Event" values="Volleyball">Volleyball<br>
+					<input type="checkbox" name="Event[]" values="Volleyball">Volleyball<br>
 
-					<input type="checkbox" name="Event" values="MixVolleyball" >Mix-Volleyball<br>
+					<input type="checkbox" name="Event[]" values="MixVolleyball" >Mix-Volleyball<br>
 
-					<input type="checkbox" name="Event" values="Kabaddi" >Kabaddi<br>
+					<input type="checkbox" name="Event[]" values="Kabaddi" >Kabaddi<br>
 
-					<input type="checkbox" name="Event" values="Badminton" >Badminton<br>
+					<input type="checkbox" name="Event[]" values="Badminton" >Badminton<br>
 
-					<input type="checkbox" name="Event" values="Kho-Kho" >Kho-Kho<br>
+					<input type="checkbox" name="Event[]" values="Kho-Kho" >Kho-Kho<br>
 
-					<input type="checkbox" name="Event" values="Carrom" >Carrom<br>
+					<input type="checkbox" name="Event[]" values="Carrom" >Carrom<br>
 
-					<input type="checkbox" name="Event" values="Chess" >Chess<br>
+					<input type="checkbox" name="Event[]" values="Chess" >Chess<br>
 
-					<input type="checkbox" name="Event" values="TugofWar" >Tug of War<br>
+					<input type="checkbox" name="Event[]" values="TugofWar" >Tug of War<br>
 
-					<input type="checkbox" name="Event" values="TableTennis" >Table Tennis<br>
+					<input type="checkbox" name="Event[]" values="TableTennis" >Table Tennis<br>
 
-					<input type="checkbox" name="Event" values="Sprint100M" >Sprint 100M<br>
+					<input type="checkbox" name="Event[]" values="Sprint100M" >Sprint 100M<br>
 
-					<input type="checkbox" name="Event" values="Sprint200M" >Sprint 200M<br>
+					<input type="checkbox" name="Event[]" values="Sprint200M" >Sprint 200M<br>
 
-					<input type="checkbox" name="Event" values="Sprint400M" >Sprint 400M<br>
+					<input type="checkbox" name="Event[]" values="Sprint400M" >Sprint 400M<br>
 
-					<input type="checkbox" name="Event" values="LongJump" >Long Jump<br>
+					<input type="checkbox" name="Event[]" values="LongJump" >Long Jump<br>
 
-					<input type="checkbox" name="Event" values="TripleJump" >Triple Jump<br>
+					<input type="checkbox" name="Event[]" values="TripleJump" >Triple Jump<br>
 
-					<input type="checkbox" name="Event" values="Langadi100M"  >Langadi 100M<br>
+					<input type="checkbox" name="Event[]" values="Langadi100M"  >Langadi 100M<br>
 
-					<input type="checkbox" name="Event" values="Relay"> Relay<br>
+					<input type="checkbox" name="Event[]" values="Relay"> Relay<br>
 
-					<input type="checkbox" name="Event" values="MixRelay" > Mix-Relay<br>
+					<input type="checkbox" name="Event[]" values="MixRelay" > Mix-Relay<br>
 					
-					<input type="checkbox" name="Event" values="ShotPut" > ShotPut<br>
+					<input type="checkbox" name="Event[]" values="ShotPut" > ShotPut<br>
 
-					<input type="checkbox" name="Event" values="FemBoxCricket" >Box Cricker(Female)<br>
+					<input type="checkbox" name="Event[]" values="FemBoxCricket" >Box Cricker(Female)<br>
 					
-					<input type="checkbox" name="Event" values="FemLangadi" >Langadi(Female)<br>
+					<input type="checkbox" name="Event[]" values="FemLangadi" >Langadi(Female)<br>
 
-					<input type="checkbox" name="Event" values="FemThrowball" >Throwball(Female)<br>
+					<input type="checkbox" name="Event[]" values="FemThrowball" >Throwball(Female)<br>
 					
-					<input type="checkbox" name="Event" values="FemDodgeball" >Dodgeball(Female)<br>
+					<input type="checkbox" name="Event[]" values="FemDodgeball" >Dodgeball(Female)<br>
 					
 				</div>
 		</div>
@@ -130,6 +130,10 @@ if (isset($_POST['Register'])) {
 	$Year = $_POST['Year'];
 	$Mobile = $_POST['Mobile'];
 	$Event = $_POST['Event'];
+	$Events = "";
+	foreach($Event as $row){
+		$Events .= $row . ",";
+	}
 
 			$query = "INSERT INTO sports_entries (User_id, College, Email, Branch, Year, Event, Mobile) 
 				VALUES('$User_id','$College', '$Email', '$Branch', '$Year', '$item','$Mobile')" ;
