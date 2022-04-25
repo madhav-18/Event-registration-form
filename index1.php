@@ -1,3 +1,20 @@
+<?php 
+  session_start(); 
+
+  if (!isset($_SESSION['username'])) {
+  	$_SESSION['msg'] = "You must log in first";
+  	header('location: login.php');
+  }
+   if (!isset($_SESSION['user_id'])) {
+  //	$_SESSION['msg'] = "You must log in first";
+  //	header('location: login.php');
+  }
+  if (isset($_GET['logout'])) {
+  	session_destroy();
+  	unset($_SESSION['username']);
+  	header("location: login.php");
+  }
+?>
 <!doctype html>
 <html lang="en">
 
@@ -21,6 +38,30 @@
 
 <header class="p-3 bg-dark text-white">
   <div class="container">
+  <?php  if (isset($_SESSION['username'])) : ?>
+    	<p>Welcome <strong style="padding-right:870px"><?php echo $_SESSION['username'] ; ?></strong>
+      <?php endif; ?>
+      <?php 
+          // initializing variables
+              $username = "";
+              $email    = "";
+              $code= array();
+              $errors = array(); 
+
+              // connect to the database
+               $db = mysqli_connect('localhost', 'root', '', 'v-cerf');
+              $username=$_SESSION['username'] ;
+               $query = "SELECT user_id FROM register_user WHERE username='$username'";
+               $results = mysqli_query($db, $query);
+      ?>
+      <?php 
+        while ($row = $results->fetch_assoc()):
+      ?>
+
+      Your ID-<strong>
+      <?php echo $row['user_id'] ; ?>
+    </strong></p>
+    <?php endwhile ?>
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <a href="#" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
         <h2>V-CERF</h2>
@@ -47,7 +88,7 @@
       <h3 class="border-bottom pb-2 mb-0">Recent updates</h3>
       <div class="d-flex text-muted pt-3">
       <img src="aurora-1.jpeg" height="240" width="380">
-        <a href="sports.html" style=" margin-bottom :150px;">
+        <a href="sports.php" style=" margin-bottom :150px;">
           <p class="pb-3 mb-0 small lh-sm border-bottom" style="padding-left: 10px;">
             <strong class="d-block text-gray-dark" style=" font-size: 45px;">AURORA</strong></a>
             Aurora is an intra college event conducted by universal College of engineering 
