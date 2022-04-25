@@ -54,7 +54,7 @@
       $last_id = mysqli_insert_id($db);
       if($last_id){
         $code = rand(1,9999);
-        $user_id = "UC_".$code."_".$last_id;
+        $user_id = "UC-".$code."-".$last_id;
         $query = "Update register_user SET user_id = '".$user_id."' WHERE id = '".$last_id."'";
         $res = mysqli_query($db,$query);
       }
@@ -91,7 +91,7 @@ if (isset($_POST['login_user'])) {
   	if (mysqli_num_rows($results) == 1) {
   	  $_SESSION['username'] = $username;
   	  $_SESSION['success'] = "You are now logged in";
-  	  header('location: index.php');
+  	  header('location: index1.php');
   	}else {
   		array_push($errors, "Wrong username/password combination");
   	}
